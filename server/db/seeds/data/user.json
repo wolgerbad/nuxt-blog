@@ -1,0 +1,20 @@
+[
+  {
+    "name": "John Doe",
+    "email": "johndoe@gmail.com",
+    "password": "123456",
+    "isAdmin": false
+  },
+  {
+    "name": "Jane Doe",
+    "email": "janedoe@gmail.com",
+    "password": "654321",
+    "isAdmin": true
+  },
+  {
+    "name": "Jack Doe",
+    "email": "jackdoe@gmail.com",
+    "password": "321654",
+    "isAdmin": false
+  }
+]
