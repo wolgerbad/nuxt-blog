@@ -1,3 +1,3 @@
-export { default as post } from './post';
-export { default as user } from './user';
-export { default as comment } from './comment';
+export { post } from './post';
+export { comment } from './comment';
+export { user, account, session } from './auth';
