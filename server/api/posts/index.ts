@@ -1,5 +1,5 @@
-import { db } from '../db';
-import { post } from '../db/schema';
+import { db } from '../../db';
+import { post } from '../../db/schema';
 
 export default defineEventHandler(async (event) => {
   const method = event.method;
