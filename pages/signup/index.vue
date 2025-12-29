@@ -1,5 +1,7 @@
 <script setup>
-const session = await $fetch('/api/auth/session');
+import { signUp } from '~/lib/authClient';
+
+// const session = await $fetch('/api/auth/session');
 
 const fullName = ref('');
 const email = ref('');
@@ -7,24 +9,16 @@ const password = ref('');
 
 const error = ref('');
 
-const router = useRouter();
-
-const signUp = async () => {
-  const result = await $fetch('/api/auth/sign-up', {
-    method: 'POST',
-    body: {
-      name: fullName.value,
-      email: email.value,
-      password: password.value,
-    },
+const handleSignUp = async () => {
+  const result = await signUp({
+    name: fullName.value,
+    email: email.value,
+    password: password.value,
   });
-
-  if (result.error) return (error.value = result.error);
-
-  router.go(0);
+  console.log('result', result);
+  if (result.error) return (error.value = result.error.message);
+  navigateTo('/');
 };
-
-if (session) navigateTo('/');
 </script>
 
 <template>
@@ -34,7 +28,7 @@ if (session) navigateTo('/');
         <h3 class="text-2xl font-semibold">Create Account</h3>
         <p>Sign up to get started with your admin dashboard</p>
       </div>
-      <form class="flex flex-col gap-4" @submit.prevent="signUp">
+      <form class="flex flex-col gap-4" @submit.prevent="handleSignUp">
         <div>
           <label for="name" class="block mb-1">Full Name</label>
           <input

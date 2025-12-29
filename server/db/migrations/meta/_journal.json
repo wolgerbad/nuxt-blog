@@ -8,6 +8,13 @@
       "when": 1766907598176,
       "tag": "0000_magenta_vermin",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1766998392122,
+      "tag": "0001_mixed_mindworm",
+      "breakpoints": true
     }
   ]
 }

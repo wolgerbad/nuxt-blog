@@ -1,4 +1,6 @@
 <script setup>
+import { signIn } from '~/lib/authClient';
+
 const email = ref('');
 const password = ref('');
 const error = ref('');
@@ -6,15 +8,10 @@ const error = ref('');
 const router = useRouter();
 const session = await $fetch('/api/auth/session');
 
-async function signIn() {
-  const result = await $fetch('/api/auth/sign-in', {
-    method: 'POST',
-    body: {
-      email: email.value,
-      password: password.value,
-    },
-  });
-  if (result.error) return (error.value = result.error);
+async function handleSignIn() {
+  const result = await signIn({ email: email.value, password: password.value });
+  console.log('result', result);
+  if (result.error) return (error.value = result.error.message);
   router.go(0);
 }
 
@@ -28,7 +25,7 @@ if (session) navigateTo('/');
         <h3 class="text-2xl font-semibold">Welcome</h3>
         <p>Sign in to access your admin dashboard</p>
       </div>
-      <form class="flex flex-col gap-4" @submit.prevent="signIn">
+      <form class="flex flex-col gap-4" @submit.prevent="handleSignIn">
         <div>
           <label for="email" class="block mb-1">Email</label>
           <input

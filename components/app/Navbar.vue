@@ -1,3 +1,9 @@
+<script setup>
+import { authClient } from '~/lib/authClient';
+
+const session = await authClient.getSession();
+</script>
+
 <template>
   <nav class="py-4 bg-white">
     <div class="max-w-7xl mx-auto flex justify-between">
@@ -14,9 +20,16 @@
         </div>
       </div>
       <NuxtLink
+        v-if="!session"
         to="/login"
         class="bg-green-500 hover:bg-green-600 px-4 py-2 rounded-lg text-white"
         >Login</NuxtLink
+      >
+      <NuxtLink
+        v-else
+        to="/dashboard"
+        class="bg-green-500 hover:bg-green-600 px-4 py-2 rounded-lg text-white"
+        >Admin Dashboard</NuxtLink
       >
     </div>
   </nav>
