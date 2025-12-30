@@ -13,6 +13,6 @@ if (!session) navigateTo('/login');
     <AccessRestricted />
   </div>
   <div v-else>
-    <AdminDashboard />
+    <AppAdminDashboard />
   </div>
 </template>

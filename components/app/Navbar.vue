@@ -2,6 +2,8 @@
 import { authClient } from '~/lib/authClient';
 
 const session = await authClient.getSession();
+
+console.log('session', session);
 </script>
 
 <template>
@@ -20,7 +22,7 @@ const session = await authClient.getSession();
         </div>
       </div>
       <NuxtLink
-        v-if="!session"
+        v-if="!session.data"
         to="/login"
         class="bg-green-500 hover:bg-green-600 px-4 py-2 rounded-lg text-white"
         >Login</NuxtLink
